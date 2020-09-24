@@ -469,32 +469,6 @@ GameMenuFrame:HookScript("OnShow", function(self)
 	settings:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", Round(self:GetRight()), Round(self:GetTop()))
 end)
 
-local settings_button = CreateFrame("Frame", nil, data_panel)
-settings_button.menu = settings
---settings:SetPoint("BOTTOMLEFT", settings_button, "BOTTOMLEFT", 0, 0)
-
-settings_button:SetSize(24, 24)
-settings_button:SetPoint("BOTTOMLEFT", data_panel, "BOTTOMRIGHT", 1, 0)
-settings_button.icon = settings_button:CreateTexture()
-settings_button.icon:SetAllPoints()
-settings_button.icon:SetTexture([[interface/worldmap/gear_64grey]])
-core.util.gen_backdrop(settings_button)
-
-local highlight = settings_button:CreateTexture(nil, "HIGHLIGHT")
-core.util.set_inside(highlight, settings_button)
-highlight:SetTexture(core.media.textures.blank)
-highlight:SetVertexColor(.6, .6, .6, .3)
-
-settings_button:SetScript("OnMouseUp", function(self, click)
-	if click == "LeftButton" then
-		if self.menu:IsShown() then
-			self.menu:Hide()
-		else
-			self.menu:build()
-		end
-	end
-end)
-
 local load_frame = CreateFrame("Frame")
 load_frame:RegisterEvent("ADDON_LOADED")
 load_frame:SetScript("OnEvent", function(self, event, addon)

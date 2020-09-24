@@ -181,12 +181,11 @@ gold_frame:RegisterEvent("ADDON_LOADED")
 gold_frame:RegisterEvent("PLAYER_LOGIN")
 gold_frame:RegisterEvent("PLAYER_MONEY")
 gold_frame:SetScript("OnEvent", function(self, event)
-	if event == "ADDON_LOADED" then
-		if addon == "Focus" then
-			if not FocusStatsRealmGold then FocusStatsRealmGold = {} end
-			if not FocusStatsRealmGold[core.player.realm] then FocusStatsRealmGold[core.player.realm] = {} end
-		end
-	else
+	if event == "ADDON_LOADED" and addon == "Focus" then
+		if not FocusStatsRealmGold then FocusStatsRealmGold = {} end
+		if not FocusStatsRealmGold[core.player.realm] then FocusStatsRealmGold[core.player.realm] = {} end
+	end
+	if FocusStatsRealmGold then
 		local new_gold = GetMoney()
 		self.text:SetText(format_gold(new_gold))
 		FocusStatsRealmGold[core.player.realm][core.player.name] = new_gold
